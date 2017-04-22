@@ -59,3 +59,16 @@ ggplot(h_gap, aes(x = year, y = lifeExp,
                   color = fct_reorder2(country, year, lifeExp))) +
   geom_line() +
   labs(color = "country")
+
+h_gap$country %>% levels()
+h_gap$country %>% fct_relevel("Romania", "Haiti") %>% levels()
+
+i_gap <- gapminder %>%
+  filter(country %in% c("United States", "Sweden", "Australia")) %>% 
+  droplevels()
+
+levels(i_gap$country)
+
+i_gap$country %>%
+  fct_recode("USA" = "United States", "Oz" = "Australia") %>%
+  levels()
