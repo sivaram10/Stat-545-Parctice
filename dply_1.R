@@ -1,6 +1,10 @@
 #dplyr
 #filter 
 #select and %>%
+install.packages("gapminder")
+install.packages("tidyverse")
+library(gapminder)
+library(tidyverse)
 gap <- gapminder
 gap %>% filter(country == "Canada")
 my_precious <- gap %>% filter(country == "Canada")
