@@ -36,4 +36,10 @@ qdiff1(gapminder$lifeExp, c(0.5,0.95))
 qdiff1(gapminder$lifeExp, c("a",0.95))
 qdiff1(gapminder$lifeExp, c(1.5,0.95))
 
+le_lin_fit <- function(dat , offset = 1952){
+  dat <- as.data.frame(dat)
+  the_fit <- lm(dat$lifeExp ~ I(dat$year - offset))
+  setNames(coef(the_fit), c("Intercept","Slope"))
+}
 
+le_lin_fit(gapminder)
