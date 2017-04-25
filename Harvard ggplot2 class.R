@@ -52,3 +52,14 @@ p1 +
   geom_point() + 
   geom_text_repel(aes(label=State), size = 3)
 
+p1 + geom_point(aes(color = Home.Value,
+                    shape = region))
+
+ed <- read.csv("E:/GitHub Main/Harvard Rgraphics/dataSets/EconomistData.csv")
+ggplot(ed, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point()
+
+ggplot(ed, aes(x = CPI, y = HDI)) +
+  geom_point(aes(color = Region,
+                 size = HDI.Rank)) +
+  geom_smooth(method = "loess")
+
