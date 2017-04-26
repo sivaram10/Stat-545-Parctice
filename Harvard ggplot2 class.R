@@ -63,3 +63,28 @@ ggplot(ed, aes(x = CPI, y = HDI)) +
                  size = HDI.Rank)) +
   geom_smooth(method = "loess")
 
+args(geom_histogram)
+args(stat_bin)
+
+p2 <- ggplot(housing, aes(x = Home.Value))
+p2 + geom_histogram()
+p2 + geom_histogram(stat = "bin", binwidth = 4000)
+
+housing.sum <- aggregate(housing["Home.Value"],
+                         housing["State"], FUN = mean)
+rbind(head(housing.sum),tail(housing.sum))
+ggplot(housing.sum, aes(x = State, y = Home.Value)) +
+  geom_bar()
+
+ggplot(housing.sum, aes(x = State, y = Home.Value)) +
+  geom_bar(stat="identity")
+
+#Exercise II
+
+p1 <- ggplot(ed, aes(x = CPI, y = HDI)) 
+p1 + geom_point()
+p1 + geom_point() + geom_smooth(method = "lm")
+#p1 + geom_point() + geom_line(stat = "lne")
+p1 + geom_point() + geom_smooth(method = "loess")
+
+
