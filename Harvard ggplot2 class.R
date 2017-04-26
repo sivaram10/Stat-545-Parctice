@@ -87,4 +87,38 @@ p1 + geom_point() + geom_smooth(method = "lm")
 #p1 + geom_point() + geom_line(stat = "lne")
 p1 + geom_point() + geom_smooth(method = "loess")
 
+p3 <- ggplot(housing, aes(x = State,
+                          y = Home.Price.Index)) +
+  theme(legend.position = "top",
+        axis.text = element_text(size = 6))
+(p4 <- p3 + geom_point(aes(color = Date),
+                       alpha = 0.5,
+                       size = 1.5,
+                       position = position_jitter(width = 0.25, height = 0)))
 
+p4 + scale_x_discrete(name = "State Abbreviation") + 
+  scale_color_continuous(name = "",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76","'94","'13"))
+
+p4 + scale_x_discrete(name = "State Abbreviation") + 
+  scale_color_continuous(name = "",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76","'94","'13"),
+                         low = "blue", high = "red")
+
+p4 +
+  scale_color_gradient2(name="State Abbreviation",
+                        breaks = c(1976, 1994, 2013),
+                        labels = c("'76", "'94", "'13"),
+                        low = "blue",
+                        high = "red",
+                        mid = "gray60",
+                        midpoint = 1994)
+p1 <- ggplot(ed, aes(x = CPI,
+                     y = HDI))
+p1 + geom_point(aes(color = Region), alpha = 0.5) +
+  scale_x_continuous(name = "Consumer Price Index") +
+  scale_y_continuous(name = "Human Development Index") +
+  scale_color_discrete(name = "Continent")+
+  scale_color_manual(values = c("red","orange","blue","green","pink","black"))
