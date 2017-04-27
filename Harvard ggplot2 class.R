@@ -122,3 +122,42 @@ p1 + geom_point(aes(color = Region), alpha = 0.5) +
   scale_y_continuous(name = "Human Development Index") +
   scale_color_discrete(name = "Continent")+
   scale_color_manual(values = c("red","orange","blue","green","pink","black"))
+
+p5 <- ggplot(housing, aes(x = Date,
+                          y = Home.Value))
+p5 + geom_line(aes(color = State))
+
+p5 + geom_line() + 
+  facet_wrap(~State, ncol = 10) +
+  theme_linedraw()
+
+p5 + geom_line() + 
+  facet_wrap(~State, ncol = 10) +
+  theme_light()
+
+p5 + geom_line() + 
+  facet_wrap(~State, ncol = 10) +
+  theme_minimal() +
+  theme(text = element_text(color = "turquoise"))
+
+theme_new <- theme_bw() +
+  theme(plot.background = element_rect(size = 1, color = "blue", fill = "black"),
+        text=element_text(size = 12, family = "Serif", color = "ivory"),
+        axis.text.y = element_text(colour = "purple"),
+        axis.text.x = element_text(colour = "red"),
+        panel.background = element_rect(fill = "pink"),
+        strip.background = element_rect(fill = "orange"))
+
+p5 + geom_line() + 
+  facet_wrap(~State, ncol = 10) + 
+  theme_new
+
+#Making Economist graph Exercise
+
+p1 <- ggplot(ed, aes(x = CPI,
+                     y = HDI))
+p1 + geom_point(aes(color = Region)) +
+  theme(legend.position = "top",
+        axis.text = element_text(size = 6)) +
+  scale_x_continuous(name = "Corruption Perceptions Index, 2011 (10=least corrupt)",breaks = c(1,2,3,4,5,6,7,8,9,10),labels = c("1","2","3","4","5","6","7","8","9","10")) +
+  scale_y_continuous(name = "Human Development Index, 2011 (1=best)",breaks = c(0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0),labels = c("0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1.0"))
