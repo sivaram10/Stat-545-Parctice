@@ -155,3 +155,37 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(aes(color = class), size =4) +
   theme_light()
 
+library(ggplot2)
+library(gapminder)
+suppressPackageStartupMessages(library(dplyr))
+jdat <- gapminder %>% 
+  filter(continent != "Oceania") %>% 
+  droplevels() %>% 
+  mutate(country = reorder(country, -1 * pop)) %>% 
+  arrange(year, country)
+
+j_year <- 2007
+q <-
+  jdat %>% 
+  filter(year == j_year) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  scale_x_log10(limits = c(230, 63000))
+q + geom_point()
+
+q + geom_point(aes(size = pop), pch = 21)
+(r <- q +
+    geom_point(aes(size = pop), pch = 21, show.legend = FALSE) +
+    scale_size_continuous(range = c(1,40)))
+(r <- r + facet_wrap(~ continent) + ylim(c(39, 87)))
+r + aes(fill = continent)
+
+j_year <- 2007
+jdat %>% 
+  filter(year == j_year) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, fill = country)) +
+  scale_fill_manual(values = country_colors) +
+  facet_wrap(~ continent) +
+  geom_point(aes(size = pop), pch = 21, show.legend = FALSE) +
+  scale_x_log10(limits = c(230, 63000)) +
+  scale_size_continuous(range = c(1,40)) + ylim(c(39, 87)) +
+  theme_bw()
