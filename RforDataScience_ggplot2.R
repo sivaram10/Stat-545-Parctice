@@ -150,3 +150,8 @@ ggplot(df, aes(x, y)) +
 
 ggplot(diamonds, aes(carat, price)) +
   geom_point(aes(colour = cut), alpha = 1/20)
+
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class), size =4) +
+  theme_light()
+
